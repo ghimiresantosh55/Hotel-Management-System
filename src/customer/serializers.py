@@ -7,7 +7,7 @@ class CustomerSerializer(serializers.ModelSerializer):
         fields="__all__"
         model=Customer
 
+
     def create(self, validated_data):
         customer=Customer.objects.create(**validated_data)
-
         return customer
