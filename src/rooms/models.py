@@ -1,6 +1,6 @@
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
-
+from src.booking.models import Booking
 # Create your models here.
 
 class Room(models.Model):
@@ -12,7 +12,7 @@ class Room(models.Model):
     )
     name= models.CharField(max_length=100,help_text="max_length can be upto 100 characters")
     number= models.IntegerField()
-    # parent= TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+    booking = models.ForeignKey(Booking, on_delete=models.PROTECT,null= True, blank= True, related_name="rooms")
     room_status=models.IntegerField(
         choices=ROOM_STATUS, default=2,
         help_text="room status : 1 = IN-USE, 2 = VACANT, default value is = 2"
